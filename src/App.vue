@@ -1,28 +1,34 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1 class="uk-heading-divider">Kitsu</h1>
+    <card-list></card-list>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import CardList from "./components/CardList.vue";
+//import UIkit from "uikit";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    HelloWorld
+    CardList
   }
-}
+};
 </script>
 
 <style>
+body {
+  padding: 0;
+  margin: 0;
+}
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>
