@@ -1,79 +1,31 @@
 <template>
-    <div>
-        <div v-if="$apollo.queries.anime.loading"><h1>Loading...</h1></div>
-        <div v-else class="card">
-            <img :src="anime.posterImage.small" alt="">
-            <div class="details">
-                <p>{{anime.title}}</p>
-                <p>Episodes - {{anime.episodeCount}}</p>
-            </div>
-        </div>
+  <div>
+    <div class="uk-card uk-card-small uk-align-center uk-card-hover uk-card-default my-card" uk-scrollspy="cls: uk-animation-slide-left; repeat: true">
+      <div class="uk-card-media-top">
+          <img :src="anime.posterImage.small" :alt="anime.title">
+      </div>
+      <div class="uk-card-body">
+        <p>{{anime.title}}</p>
+        <p>Episodes - {{anime.episodeCount}}</p>
+      </div>
     </div>
+  </div>
 </template>
-<script>
-import gql from "graphql-tag";
 
+<script>
 export default {
-  prop : {
-    id : String
-  },
-  data() {
-    return {
-      id : '1',
-      anime: {}
-    };
-  },
-  apollo: {
-    anime: {
-      query: gql`
-        query getAnime($id: ID) {
-          anime(id: $id) {
-            title: canonicalTitle
-            episodeCount
-            posterImage {
-              tiny
-              small
-              original
-              large
-            }
-          }
-        }
-      `,
-      variables() {
-        return {
-          id: this.id
-        };
-      }
-    }
+  props: {
+    anime: Object
   }
 };
 </script>
+
 <style scoped>
-.card {
-  text-align: center;
+.my-card{
+  max-width: 284px;
   border-radius: 10px;
-  display: inline-block;
-  background-color: rgb(37, 37, 37);
-  width: 284px;
 }
-.card>img {
+.uk-card-media-top>img{
   border-radius: 10px 10px 0 0;
-}
-.details {
-  padding: 10px;
-  color: rgb(211, 211, 211);
-}
-.details>p:first-child {
-  font-size: larger;
-}
-button {
-  border: none;
-  outline: none;
-  color: rgb(0, 136, 255);
-  font-size: large;
-  background-color: transparent;
-}
-button:hover {
-  text-decoration: underline;
 }
 </style>

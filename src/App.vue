@@ -1,18 +1,20 @@
 <template>
-  <div id="app">
-    <h1 class="uk-heading-divider">Kitsu</h1>
-    <card-list></card-list>
+  <div id="app" class="uk-container-large">
+    <navbar></navbar>
+    <card-list about="Trending"></card-list>
   </div>
 </template>
 
 <script>
 import CardList from "./components/CardList.vue";
+import Navbar from "./components/Navbar.vue";
 //import UIkit from "uikit";
 
 export default {
   name: "app",
   components: {
-    CardList
+    CardList,
+    Navbar
   }
 };
 </script>
