@@ -5,7 +5,7 @@
   <div id='trending'
   class="uk-child-width-1-2@s uk-child-width-1-4@m uk-child-width-1-6@l uk-child-width-1-8@xl uk-text-center"
   uk-grid>
-      <anime-card v-for="anime in animes" :anime="anime" :key="anime.id"></anime-card>
+      <anime-card v-for="anime in trending" :anime="anime" :key="anime.id"></anime-card>
   </div>
   <ul class="uk-pagination">
     <li><a @click="page--"><span class="uk-margin-small-right" uk-pagination-previous></span> Previous</a></li>
@@ -26,34 +26,23 @@ export default {
   },
   data() {
     return {
-      limit: 6,
-      page: 130,
       animes: []
     };
   },
   apollo: {
-    animes: {
+    trending: {
       query: gql`
-        query getAnime($limit: Int, $page: Int) {
-          animes(limit: $limit, page: $page) {
+        {
+          trending {
             id
             title: canonicalTitle
             episodeCount
             posterImage {
-              tiny
               small
-              original
-              large
             }
           }
         }
-      `,
-      variables() {
-        return {
-          page: this.page,
-          limit: this.limit
-        };
-      }
+      `
     }
   }
 };
