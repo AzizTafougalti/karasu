@@ -16,7 +16,7 @@
 <script>
 import AnimeCard from "./AnimeCard.vue";
 import gql from "graphql-tag";
-import { json } from "body-parser";
+
 const LIMIT = 6;
 
 export default {
@@ -35,7 +35,7 @@ export default {
     animes: {
       query: gql`
         query animes($limit: Int, $page: Int) {
-          animes(limit: $limit, page: $page) {
+          animes(limit: $limit, page: $page, filter : {status : "current"} sort : "-userCount") {
             id
             title: canonicalTitle
             episodeCount
